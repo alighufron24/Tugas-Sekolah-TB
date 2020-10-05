@@ -26,13 +26,13 @@
             <tr>
                 <td>Nama Penyewa</td>
                 <td>:</td>
-                <td><input type="text" id="namapenyewa"></td>
+                <td><input type="text" id="nama_penyewa"></td>
             </tr>
             <tr>
                 <td>Jenis</td>
                 <td>:</td>
                 <td>
-                    <select id="jenis">
+                    <select id="jenis_lapangan">
                         <option selected>Jenis Lapangan</option>
                         <option value="Lapangan Futsal InDoor">Lapangan Futsal InDoor</option>
                         <option value="Lapangan Futsal OutDoor">Lapangan Futsal OutDoor</option>
@@ -43,41 +43,41 @@
             <tr>
                 <td>Tanggal Sewa</td>
                 <td>:</td>
-                <td><input type="date" id="tanggalsewa"></td>
+                <td><input type="date" id="tanggal_sewa"></td>
             </tr>
             <tr>
                 <td>Lama Sewa</td>
                 <td>:</td>
-                <td><input type="text" id="lamasewa"></td>
+                <td><input type="text" id="lama_sewa"></td>
             </tr>
             <tr>
                 <td>Jam Mulai</td>
                 <td>:</td>
-                <td><input type="text" id="jammulai"></td>
+                <td><input type="text" id="jam_mulai"></td>
             </tr>
             <tr>
                 <td>Jam Selesai</td>
                 <td>:</td>
-                <td><input type="text" id="jamselesai"></td>
+                <td><input type="text" id="jam_selesai"></td>
             </tr>
             <tr>
                 <td>Harga Awal</td>
                 <td>:</td>
-                <td><input type="number" id="hargaawal"></td>
+                <td><input type="number" id="harga_awal"></td>
             </tr>
             <tr>
                 <td>Potongan Harga</td>
                 <td>:</td>
-                <td><input type="number" id="potonganharga"></td>
+                <td><input type="number" id="potongan_harga"></td>
             </tr>
             <tr>
-                <td>Harga Akhir</td>
+                <td>Jumlah Harga</td>
                 <td>:</td>
-                <td><input type="number" id="hargaakhir"></td>
+                <td><input type="number" id="jumlah_harga"></td>
             </tr>
             <tr>
                 <td>
-                    <input type="submit" id="tambahkan" value="Tambahkan">
+                    <button id="tambahkan" onclick="add()">Tambahkan</button>
                 </td>
             </tr>
         </table>
@@ -95,8 +95,8 @@
                 <th>Jam Selesai</th>
                 <th>Harga Awal</th>
                 <th>Potongan Harga</th>
-                <th>Harga Akhir</th>
-                <th>Modify</th>
+                <th>Jumlah</th>
+                <th>Modifikasi</th>
             </tr>
         </table>
     </center>
@@ -113,59 +113,61 @@
         var jamselesai = []
         var hargaawal = []
         var potonganharga = []
-        var hargaakhir = []
+        var jumlahharga = []
 
         var tampil = document.getElementById('tampildata')
 
-        function showdata() {
+        function showData() {
             tampil.innerHTML = ""
 
-            for (i = 0;i<jenis.length;i++){
+            for (i = 0;i<penyewa.length;i++){
               var nodata = i+1
         
 
             tampil.innerHTML += "<tr>"+
                 "<th>"+nodata+"</th>"+
-                "<th>"+penyewa[i]+"</th>"+
-                "<th>"+jenis[i]+"</th>"+
-                "<th>"+tanggal[i]+"</th>"+
-                "<th>"+lamasewa[i]+"</th>"+
-                "<th>"+jammulai[i]+"</th>"+
-                "<th>"+jamselesai[i]+"</th>"+
-                "<th>"+hargaawal[i]+"</th>"+
-                "<th>"+potonganharga[i]+"</th>"+
-                "<th>"+hargaakhir[i]+"</th>"+
+                "<td>"+penyewa[i]+"</td>"+
+                "<td>"+jenis[i]+"</td>"+
+                "<td>"+tanggal[i]+"</td>"+
+                "<td>"+lamasewa[i]+"</td>"+
+                "<td>"+jammulai[i]+"</td>"+
+                "<td>"+jamselesai[i]+"</td>"+
+                "<td>"+hargaawal[i]+"</td>"+
+                "<td>"+potonganharga[i]+"</td>"+
+                "<td>"+jumlahharga[i]+"</td>"+
                 "<td>"+
-                  "<button class='btn btn-light' onclick='update("+i+")' type='button'>Update</button>"+
-                  "<button class='btn btn-light' href='#' onclick='hapus("+i+")' type='button'>Delete</button>"+
+                  "<button onclick='update("+i+")' type='button'>Update</button>"+
+                  "<button href='#' onclick='hapus("+i+")' type='button'>Delete</button>"+
                 "</td>"+
               "</tr>"
             }
         }
-        showdata()
+        showData()
+        
 
         function add() {
-            var penyewabaru = document.getElementById('namapenyewa').value
-            var jenisbaru = document.getElementById('jenis').value
-            var tanggalbaru = document.getElementById('tanggalsewa').value
-            var lamabaru = document.getElementById('lamasewa').value
-            var mulaibaru = document.getElementById('jammulai').value
-            var selesaibaru = document.getElementById('jamselesai').value
-            var awalbaru = document.getElementById('hargaawal').value
-            var potonganbaru = document.getElementById('potonganharga').value
-            var akhirbaru = document.getElementById('hargaakhir').value
+            var penyewabaru = document.getElementById('nama_penyewa').value
+            var jenisbaru = document.getElementById('jenis_lapangan').value
+            var tanggalbaru = document.getElementById('tanggal_sewa').value
+            var lamabaru = document.getElementById('lama_sewa').value
+            var mulaibaru = document.getElementById('jam_mulai').value
+            var selesaibaru = document.getElementById('jam_selesai').value
+            var awalbaru = document.getElementById('harga_awal').value
+            var potonganbaru = document.getElementById('potongan_harga').value
+            var jumlahbaru = document.getElementById('jumlah_harga').value
 
             penyewa.push(penyewabaru)
-            jenis.push(jenis)
+            jenis.push(jenisbaru)
             tanggal.push(tanggalbaru)
             lamasewa.push(lamabaru)
             jammulai.push(mulaibaru)
             jamselesai.push(selesaibaru)
             hargaawal.push(awalbaru)
             potonganharga.push(potonganbaru)
-            hargaakhir.push(akhirbaru)
+            jumlahharga.push(jumlahbaru)
 
-            showdata()
+            showData()
+
         }
 
     </script>
