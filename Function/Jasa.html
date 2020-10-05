@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasa</title>
+</head>
+<body>
+    <center>
+        <h1>Penyewaan</h1>
+        <h3>Lapangan Olahraga</h3>
+    </center>
+    <br>
+    <strong style="float: right; margin-right: 300px;">List Harga Lapangan</strong>
+    <br>
+    <ul style="float: right; margin-right: 200px;">
+        <li>Lapangan Futsal 1 (OutDoor) 45000</li>
+        <li>Lapangan Futsal 2 (InDoor) 60000</li>
+        <li>Lapangan Bulutangkis 40000</li>
+    </ul>
+    <br>
+        <table style="margin: 30px 0 30px 290px;">
+            <tr>
+                <td>Nama Penyewa</td>
+                <td>:</td>
+                <td><input type="text" id="namapemesan"></td>
+            </tr>
+            <tr>
+                <td>Jenis</td>
+                <td>:</td>
+                <td>
+                    <select id="jenis">
+                        <option selected>Jenis Lapangan</option>
+                        <option value="Lapangan Futsal InDoor">Lapangan Futsal InDoor</option>
+                        <option value="Lapangan Futsal OutDoor">Lapangan Futsal OutDoor</option>
+                        <option value="Lapangan Bulutangkis">Lapangan Bulutangkis</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Tanggal Sewa</td>
+                <td>:</td>
+                <td><input type="date" id="tanggalsewa"></td>
+            </tr>
+            <tr>
+                <td>Lama Sewa</td>
+                <td>:</td>
+                <td><input type="text" id="lamasewa"></td>
+            </tr>
+            <tr>
+                <td>Jam Mulai</td>
+                <td>:</td>
+                <td><input type="text" id="jammulai"></td>
+            </tr>
+            <tr>
+                <td>Jam Selesai</td>
+                <td>:</td>
+                <td><input type="text" id="jamselesai"></td>
+            </tr>
+            <tr>
+                <td>Harga Awal</td>
+                <td>:</td>
+                <td><input type="number" id="hargaawal"></td>
+            </tr>
+            <tr>
+                <td>Potongan Harga</td>
+                <td>:</td>
+                <td><input type="number" id="potonganharga"></td>
+            </tr>
+            <tr>
+                <td>Harga Akhir</td>
+                <td>:</td>
+                <td><input type="number" id="hargaakhir"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" id="tambahkan" value="Tambahkan">
+                </td>
+            </tr>
+        </table>
+
+    <br>
+    <center>
+        <table border="1" style="width: 1000px;">
+            <tr>
+                <th>Penyewa</th>
+                <th>Jenis</th>
+                <th>Tanggal</th>
+                <th>Lama Sewa</th>
+                <th>Jam Mulai</th>
+                <th>Jam Selesai</th>
+                <th>Harga Awal</th>
+                <th>Potongan Harga</th>
+                <th>Harga Akhir</th>
+                <th>Modify</th>
+            </tr>
+        </table>
+    </center>
+    <tbody id="tampildata">
+
+    </tbody>
+
+    <script>
+        function name(params) {
+            
+        }
+    </script>
+</body>
+</html>
