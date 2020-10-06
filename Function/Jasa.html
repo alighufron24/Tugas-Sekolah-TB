@@ -8,184 +8,150 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title>Jasa</title>
+    <title>Laundry</title>
+    <style>
+        
+    </style>
   </head>
   <body>
-      <center>
-          <h1>Penyewaan</h1>
-          <h2>Lapangan Olahraga</h2>
-      </center>
-      <br>
-    <fieldset style="width: 450px; float: right; margin-right: 300px; margin-top: 40px;">
-    <strong style="float: right; margin-right: 300px;">List Harga Lapangan</strong>
-    <br>
-    <ul style="float: right; margin-right: 200px;">
-        <li>Lapangan Futsal 1 (OutDoor) 45000/jam</li>
-        <li>Lapangan Futsal 2 (InDoor) 60000/jam</li>
-        <li>Lapangan Bulutangkis 40000/jam</li><hr>
-        <p style="text-align: justify;">Jika menyewa lebih dari 2 jam maka akan mendapatkan diskon 15% dari harga awal masing masing Lapangan.</p>
-    </ul>
-    </fieldset>
-    <br>
-        <table style="margin: 30px 0 30px 290px;">
-            <tr>
-                <td>Nama Penyewa</td>
-                <td>:</td>
-                <td><input type="text" id="penyewa"></td>
-            </tr>
-            <tr>
-                <td>Jenis</td>
-                <td>:</td>
-                <td>
-                    <select id="jenis_lapangan">
-                        <option selected>Jenis Lapangan</option>
-                        <option value="Lapangan Futsal InDoor">Lapangan Futsal InDoor</option>
-                        <option value="Lapangan Futsal OutDoor">Lapangan Futsal OutDoor</option>
-                        <option value="Lapangan Bulutangkis">Lapangan Bulutangkis</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Tanggal</td>
-                <td>:</td>
-                <td><input type="date" id="tanggal"></td>
-            </tr>
-            <tr>
-                <td>Lama Sewa</td>
-                <td>:</td>
-                <td><input type="text" id="lama_sewa"></td>
-            </tr>
-            <tr>
-                <td>Mulai</td>
-                <td>:</td>
-                <td><input type="text" id="mulai"></td>
-            </tr>
-            <tr>
-                <td>Selesai</td>
-                <td>:</td>
-                <td><input type="text" id="selesai"></td>
-            </tr>
-            <tr>
-                <td>Harga Awal</td>
-                <td>:</td>
-                <td><input type="number" id="harga_awal"></td>
-            </tr>
-            <tr>
-                <td>Potongan Harga</td>
-                <td>:</td>
-                <td><input type="number" id="potongan_harga"></td>
-            </tr>
-            <tr>
-                <td>Jumlah Harga</td>
-                <td>:</td>
-                <td><input type="number" id="jumlah_harga"></td>
-            </tr>
-        </table>
-        <p style="margin: 30px 0 30px 290px;">
-            <input type="submit" id="tambahkan" value="Tambahkan" onclick="add()">
-        </p>
+        <div class="p-3 mb-3 bg-secondary text-white shadow-sm">
+          <h5 class="display-4" style="text-align: center; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Laundry</h5>
+        </div>
+        <div class="shadow-sm p-3 mb-5 bg-light rounded" style="float: left; margin-left: 30px; width: 745px;">
+                <div class="form-group row ">
+                    <label for="pembelii" class="col-sm-2 col-form-label">Pembeli</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="pembeli" placeholder="Masukkan Nama" style="width: 350px;">
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label for="tanggall" class="col-sm-2 col-form-label">Tanggal</label>
+                    <div class="col-sm-4">
+                      <input type="date" class="form-control" id="tanggal" style="width: 350px;">
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label for="berat" class="col-sm-2 col-form-label">Berat/kg</label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="berat" placeholder="Masukkan Berat" style="width: 350px;">
+                    </div>
+                </div>
+                <form name="hitung diskon">
+                <div class="form-group row ">
+                    <label for="hargaa" class="col-sm-2 col-form-label">Harga (Rp.)</label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="harga" name="harga1" placeholder="Masukkan Harga" style="width: 350px;">
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label for="diskonn" class="col-sm-2 col-form-label">Diskon</label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="diskon" name="diskon1" placeholder="Masukkan Diskon" style="width: 350px;">
+                    </div>
+                </div>
+                
+                <div class="form-group row mt-3">
+                    <label for="totall" class="col-sm-2 col-form-label">Total</label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="total" name="total1" placeholder="Total" style="width: 350px;">
+                    </div>
+                </div>
+                </form>
+                <button type="button" class="btn btn-secondary" style="margin-left: 125px; margin-top: 20px;" onclick="add()">Simpan</button>
+        </div>
+        <div class="shadow-sm p-3 mb-5 bg-light rounded" style="float: right; margin-right: 30px; width: 745px;">
+            <center>
+                <strong>Harga</strong>
+                <br><br>
+                <p>5000/kg</p>
+                <hr>
+                <p>Setiap Laundry berat diatas 15kg, maka akan mendapatkan diskon sebesar 10%</p>
+            </center>
+        </div>
 
-    <br>
-    <center>
-        <table border="1" style="width: 1000px; text-align: center;">
-            <tr>
-                <th>No</th>
-                <th>Penyewa</th>
-                <th>Jenis</th>
-                <th>Tanggal</th>
-                <th>Lama Sewa</th>
-                <th>Jam Mulai</th>
-                <th>Jam Selesai</th>
-                <th>Harga Awal</th>
-                <th>Potongan Harga</th>
-                <th>Jumlah</th>
-                <th>Modify</th>
-            </tr>
-            <tbody id="tampildata">
-
-            </tbody>
-        </table>
-    </center>
         
+            <table class="table table-sm rounded shadow-sm" style="width: 750px; float: right; margin-right: 30px; text-align: center;">
+                <thead>
+                  <tr class="bg-dark text-white">
+                    <th scope="col">No</th>
+                    <th scope="col">Pembeli</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Berat/kg</th>
+                    <th scope="col">Harga</th>
+                    <th scope="col">Diskon</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Modify</th>
+                  </tr>
+                </thead>
+                <tbody id="tampildata">
+                 
+                </tbody>
+              </table>
 
     <script>
-        var penyewa = []
-        var jenis = []
-        var tanggal = []
-        var lamasewa = []
-        var mulai = []
-        var selesai = []
-        var hargaawal = []
-        var potonganharga = []
-        var jumlahharga = []
+       var pembeli = []
+       var tanggal = []
+       var berat = []
+       var harga = []
+       var diskon = []
+       var total = []
 
-        var tampil = document.getElementById('tampildata')
+       var tampil = document.getElementById('tampildata')
 
-        function showData() {
+          function showData() {
             tampil.innerHTML = ""
 
-            for (i = 0;i<penyewa.length;i++){
+            for(i = 0;i<pembeli.length;i++){
               var nodata = i+1
-        
 
-            tampil.innerHTML += "<tr>"+
+                
+
+              tampil.innerHTML += "<tr>"+
                 "<th>"+nodata+"</th>"+
-                "<td>"+penyewa[i]+"</td>"+
-                "<td>"+jenis[i]+"</td>"+
+                "<td>"+pembeli[i]+"</td>"+
                 "<td>"+tanggal[i]+"</td>"+
-                "<td>"+lamasewa[i]+"</td>"+
-                "<td>"+mulai[i]+"</td>"+
-                "<td>"+selesai[i]+"</td>"+
-                "<td>"+hargaawal[i]+"</td>"+
-                "<td>"+potonganharga[i]+"</td>"+
-                "<td>"+jumlahharga[i]+"</td>"+
+                "<td>"+berat[i]+"</td>"+
+                "<td>"+harga[i]+"</td>"+
+                "<td>"+diskon[i]+"</td>"+
+                "<td>"+total[i]+"</td>"+
                 "<td>"+
-                  "<button href='#' onclick='drop("+i+")' type='button'>Delete</button>"+
+                  "<button class='btn btn-transparent shadow-sm' href='#' onclick='hapus("+i+")' type='button'>Delete</button>"+
                 "</td>"+
               "</tr>"
             }
-        }
-        showData()
-        
+          }
+          showData()
 
-        function add() {
-            var penyewabaru = document.getElementById('penyewa').value
-            var jenisbaru = document.getElementById('jenis_lapangan').value
-            var tanggalbaru = document.getElementById('tanggal').value
-            var lamabaru = document.getElementById('lama_sewa').value
-            var mulaibaru = document.getElementById('mulai').value
-            var selesaibaru = document.getElementById('selesai').value
-            var awalbaru = document.getElementById('harga_awal').value
-            var potonganbaru = document.getElementById('potongan_harga').value
-            var jumlahbaru = document.getElementById('jumlah_harga').value
+          function add() {
+              var pembelibaru = document.getElementById('pembeli').value
+              var tanggalbaru = document.getElementById('tanggal').value
+              var beratbaru = document.getElementById('berat').value
+              var hargabaru = document.getElementById('harga').value
+              var diskonbaru = document.getElementById('diskon').value
+              var totalbaru = document.getElementById('total').value
 
-            penyewa.push(penyewabaru)
-            jenis.push(jenisbaru)
-            tanggal.push(tanggalbaru)
-            lamasewa.push(lamabaru)
-            mulai.push(mulaibaru)
-            selesai.push(selesaibaru)
-            hargaawal.push(awalbaru)
-            potonganharga.push(potonganbaru)
-            jumlahharga.push(jumlahbaru)
+              pembeli.push(pembelibaru)
+              tanggal.push(tanggalbaru)
+              berat.push(beratbaru)
+              harga.push(hargabaru)
+              diskon.push(diskonbaru)
+              total.push(totalbaru)
 
-            showData()
+              showData()
 
-        }
+          }
 
-        function drop(hapus) {
-            var penyewahapus = penyewa.splice(hapus,1);
-            var jenishapus = jenis.splice(hapus,1);
-            var tanggalhapus = tanggal.splice(hapus,1);
-            var lamahapus = lamasewa.splice(hapus,1);
-            var mulaihapus = mulai.splice(hapus,1);
-            var selesaihapus = selesai.splice(hapus,1);
-            var awalhapus = hargaawal.splice(hapus,1);
-            var potonganhapus = potonganharga.splice(hapus,1);
-            var jumlahhapus = jumlahharga.splice(hapus,1);
+          function hapus(drop) {
+              var pembelihapus = pembeli.splice(drop,1);
+              var tanggalhapus = tanggal.splice(drop,1);
+              var berathapus = berat.splice(drop,1);
+              var hargahapus = harga.splice(drop,1);
+              var diskonhapus = diskon.splice(drop,1);
+              var totalhapus = total.splice(drop,1);
 
-            showData()
-        }
+              showData()
+
+          }
 
 
 
