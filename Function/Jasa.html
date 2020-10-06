@@ -12,6 +12,42 @@
     <style>
         
     </style>
+        <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $("#berat").keyup(function(){ 
+              var berat3  = parseInt($("#berat").val());
+              var harga3 = berat3 * 5000;
+              $("#harga").val(harga3); 
+            }); 
+          }); 
+        </script> 
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $("#berat").keyup(function(){ 
+              var berat2 = parseInt($("#berat").val());
+              var harga2 = parseInt($("#harga").val())
+              var diskon2 
+              if (berat2>15) {
+                diskon2 = 10
+              }else{
+                diskon2 = 0
+              }
+              ;
+              $("#diskon").val(diskon2); 
+            }); 
+          }); 
+        </script> 
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $("#berat").keyup(function(){ 
+              var hargaa  = parseInt($("#harga").val());
+              var diskonn  = parseInt($("#diskon").val());
+              var totall = hargaa - (hargaa*(diskonn/100));
+              $("#total").val(totall); 
+            }); 
+          }); 
+        </script> 
   </head>
   <body>
         <div class="p-3 mb-3 bg-secondary text-white shadow-sm">
@@ -36,24 +72,24 @@
                       <input type="number" class="form-control" id="berat" placeholder="Masukkan Berat" style="width: 350px;">
                     </div>
                 </div>
-                <form name="hitung diskon">
+                <form name="hitung diskon" method="POST">
                 <div class="form-group row ">
                     <label for="hargaa" class="col-sm-2 col-form-label">Harga (Rp.)</label>
                     <div class="col-sm-4">
-                      <input type="number" class="form-control" id="harga" name="harga1" placeholder="Masukkan Harga" style="width: 350px;">
+                      <input type="number" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga" style="width: 350px;">
                     </div>
                 </div>
                 <div class="form-group row ">
-                    <label for="diskonn" class="col-sm-2 col-form-label">Diskon</label>
+                    <label for="diskonn" class="col-sm-2 col-form-label">Diskon (%)</label>
                     <div class="col-sm-4">
-                      <input type="number" class="form-control" id="diskon" name="diskon1" placeholder="Masukkan Diskon" style="width: 350px;">
+                      <input type="number" class="form-control" id="diskon" name="diskon" placeholder="Masukkan Diskon" style="width: 350px;">
                     </div>
                 </div>
                 
                 <div class="form-group row mt-3">
                     <label for="totall" class="col-sm-2 col-form-label">Total</label>
                     <div class="col-sm-4">
-                      <input type="number" class="form-control" id="total" name="total1" placeholder="Total" style="width: 350px;">
+                      <input type="number" class="form-control" id="total" name="total" placeholder="Total" style="width: 350px;">
                     </div>
                 </div>
                 </form>
@@ -103,6 +139,8 @@
 
             for(i = 0;i<pembeli.length;i++){
               var nodata = i+1
+
+              
 
                 
 
