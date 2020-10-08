@@ -15,25 +15,39 @@
         <script src="http://code.jquery.com/jquery-2.1.4.js"></script>
         <script type="text/javascript">
           $(document).ready(function(){
+
+            //Untuk mengkalikan harga dengan berat
             $("#berat").keyup(function(){ 
               var berat3  = parseInt($("#berat").val());
               var harga3 = berat3 * 6000;
               $("#harga").val(harga3); 
             }); 
          
+            //Untuk patokan diskon
             $("#berat").keyup(function(){ 
               var berat2 = parseInt($("#berat").val());
               var harga2 = parseInt($("#harga").val())
               var diskon2 
-              if (berat2>20) {
-                diskon2 = 15
-              }else{
+              if (berat2>0,berat2<20) {
                 diskon2 = 0
+              }
+              else if (berat2>=20,berat2<50) {
+                diskon2 = 10
+              }
+              else if(berat2>=50,berat2<100){
+                diskon2 = 20
+              }
+              else if(berat2>=100,berat2<1000){
+                diskon2 = 30
+              }
+              else{
+                diskon2 = 35
               }
               ;
               $("#diskon").val(diskon2); 
             });  
 
+            //Untuk menghitung total harga
             $("#berat").keyup(function(){ 
               var hargaa  = parseInt($("#harga").val());
               var diskonn  = parseInt($("#diskon").val());
@@ -44,11 +58,15 @@
         </script> 
   </head>
   <body>
+
+    <!--Navbar-->
     <nav class="navbar mb-5 shadow" style="background-color: black; color: white; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
       <img src="gambar/laundry.png" style="width: 150px; margin-left: 45%;" alt="Gambar">
     </nav>
-        <div class="container card bg-transparant mb-5 center shadow" style="width: 200;">
-          <div class="card-header text-white" style="text-align: center; background-color: black; font-family: fantasy;"><h3>List Harga</h3></div>
+
+        <!--Card Laundry-->
+        <div class="container card bg-transparant mb-3 shadow" style="width: 675px; margin-left: 30px; float: left;">
+          <div class="card-header text-white" style="text-align: center; background-color: black; font-family: fantasy;"><h3>Laundry</h3></div>
           <div class="card-body">
             <center><strong>Tarif Rp. 6000/kg</strong></center><hr>
             <center><strong>Menerima Laundry:</strong></center>
@@ -75,12 +93,40 @@
             <hr>
             <center>
               <strong>Ketentuan</strong>
-              <p class="card-text">Laundry dengan berat lebih dari 20kg, maka akan mendapatkan diskon sebesar 15%.</p>
             </center>
+              <ul>
+                <li>20 s/d 49kg mendapatkan diskon 10% </li>
+                <li>50 s/d 99kg mendapatkan diskon 20%</li>
+                <li>100 s/d 999kg mendapatkan diskon 30%</li>
+                <li>1000kg keatas mendapatkan diskon 35%</li>
+              </ul>
+            
           </div>
         </div>
-        <div class="card bg-transparant mb-3 shadow" style="width: 675px; margin-left: 40px; float: left;">
-          <div class="card-header text-white rounded" style="background-color: black;"><h3 style="font-family: fantasy; text-align: center;">Input</h3></div>
+
+        <!--Table-->
+        <table class="table table-sm rounded shadow rounded" style=" width: 820px; float: right; margin-right: 30px; text-align: center;">
+          <thead>
+            <tr style="background-color: black; color: white;">
+              <th scope="col">No</th>
+              <th scope="col">Pembeli</th>
+              <th scope="col">Tanggal</th>
+              <th scope="col">Layanan</th>
+              <th scope="col">Berat (kg)</th>
+              <th scope="col">Harga (Rp.)</th>
+              <th scope="col">Diskon (%)</th>
+              <th scope="col">Total</th>
+              <th scope="col">Modify</th>
+            </tr>
+          </thead>
+          <tbody id="tampildata">
+          
+          </tbody>
+        </table>
+        
+        <!--Form-->
+        <div class="card bg-transparant mb-3 shadow" style="width: 675px; margin: 680px 0 0 30px;">
+          <div class="card-header text-white" style="text-align: center; background-color: black; font-family: fantasy;"><h3>Input</h3></div>
           <div class="card-body">
             <div class="form-group row ">
               <label for="pembelii" class="col-sm-2 col-form-label">Pembeli</label>
@@ -135,28 +181,10 @@
           <button type="button" class="btn text-white" style="margin-left: 355px; margin-top: 20px; background-color: black;" onclick="add()">Tambahkan</button>
           </div>
         </div>
-        <table class="table table-sm rounded shadow rounded" style=" width: 820px; float: right; margin-right: 30px; text-align: center;">
-          <thead>
-            <tr style="background-color: black; color: white;">
-              <th scope="col">No</th>
-              <th scope="col">Pembeli</th>
-              <th scope="col">Tanggal</th>
-              <th scope="col">Layanan</th>
-              <th scope="col">Berat (kg)</th>
-              <th scope="col">Harga (Rp.)</th>
-              <th scope="col">Diskon (%)</th>
-              <th scope="col">Total</th>
-              <th scope="col">Modify</th>
-            </tr>
-          </thead>
-          <tbody id="tampildata">
-          
-          </tbody>
-        </table>
-
 
 
     <script>
+      //Data didalam tabel
        var pembeli = []
        var tanggal = []
        var layanan = []
@@ -167,6 +195,7 @@
 
        var tampil = document.getElementById('tampildata')
 
+          //Menampilkan data
           function showData() {
             tampil.innerHTML = ""
 
@@ -190,6 +219,7 @@
           }
           showData()
 
+          //Menambahkan data baru
           function add() {
               var pembelibaru = document.getElementById('pembeli').value
               var tanggalbaru = document.getElementById('tanggal').value
@@ -211,6 +241,7 @@
 
           }
 
+          //Menghapus data 
           function hapus(drop) {
               var pembelihapus = pembeli.splice(drop,1);
               var tanggalhapus = tanggal.splice(drop,1);
