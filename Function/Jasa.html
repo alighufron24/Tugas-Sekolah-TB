@@ -17,16 +17,16 @@
           $(document).ready(function(){
 
             //Untuk mengkalikan harga dengan berat
-            $("#berat").keyup(function(){ 
-              var berat3  = parseInt($("#berat").val());
+            $("#mberat2").keyup(function(){ 
+              var berat3  = parseInt($("#mberat2").val());
               var harga3 = berat3 * 6000;
-              $("#harga").val(harga3); 
+              $("#mharga2").val(harga3); 
             }); 
          
             //Untuk patokan diskon
-            $("#berat").keyup(function(){ 
-              var berat2 = parseInt($("#berat").val());
-              var harga2 = parseInt($("#harga").val())
+            $("#mberat2").keyup(function(){ 
+              var berat2 = parseInt($("#mberat2").val());
+              var harga2 = parseInt($("#mharga2").val())
               var diskon2 
               if (berat2>0,berat2<20) {
                 diskon2 = 0
@@ -44,57 +44,23 @@
                 diskon2 = 35
               }
               ;
-              $("#diskon").val(diskon2); 
+              $("#mdiskon2").val(diskon2); 
             });  
 
             //Untuk menghitung total harga
-            $("#berat").keyup(function(){ 
-              var hargaa  = parseInt($("#harga").val());
-              var diskonn  = parseInt($("#diskon").val());
+            $("#mberat2").keyup(function(){ 
+              var hargaa  = parseInt($("#mharga2").val());
+              var diskonn  = parseInt($("#mdiskon2").val());
               var totall = hargaa - (hargaa*(diskonn/100));
-              $("#total").val(totall); 
-
-
-
-
-               //Untuk mengkalikan harga dengan berat(Update)
-            $("#mberat").keyup(function(){ 
-              var berat3m  = parseInt($("#mberat").val());
-              var harga3m = berat3m * 6000;
-              $("#mharga").val(harga3m); 
+              $("#mtotal2").val(totall); 
             }); 
-         
-            //Untuk patokan diskon(Update)
-            $("#mberat").keyup(function(){ 
-              var berat2m = parseInt($("#mberat").val());
-              var harga2m = parseInt($("#mharga").val())
-              var diskon2m 
-              if (berat2m>0,berat2m<20) {
-                diskon2m = 0
-              }
-              else if (berat2m>=20,berat2m<50) {
-                diskon2m = 10
-              }
-              else if(berat2m>=50,berat2m<100){
-                diskon2m = 20
-              }
-              else if(berat2m>=100,berat2m<1000){
-                diskon2m = 30
-              }
-              else{
-                diskon2m = 35
-              }
-              ;
-              $("#mdiskon").val(diskon2m); 
-            });  
 
-            //Untuk menghitung total harga(Update)
-            $("#mberat").keyup(function(){ 
-              var hargaam  = parseInt($("#mharga").val());
-              var diskonnm  = parseInt($("#mdiskon").val());
-              var totallm = hargaam - (hargaam*(diskonnm/100));
-              $("#mtotal").val(totallm); 
-            }); 
+            //Untuk menghitung kembalian
+            $("#mdibayar2").keyup(function(){ 
+              var dibayar4  = parseInt($("#mdibayar2").val());
+              var total4  = parseInt($("#mtotal2").val());
+              var kembalian4 =  dibayar4 - total4;
+              $("#mkembalian2").val(kembalian4); 
             }); 
           }); 
         </script> 
@@ -147,8 +113,8 @@
         </div>
 
         <!--Table-->
-        <h3 style="font-family: fantasy; text-align: right; margin-right: 400px;">Output</h3>
-        <table class="table table-sm rounded shadow rounded" style=" width: 820px; float: right; margin-right: 30px; text-align: center;">
+        <h3 style="font-family: fantasy; text-align: right; margin-right: 375px;">Tabel Pemesan</h3>
+        <table class="table table-sm rounded shadow rounded" style="width: 820px; float: right; margin-right: 30px; text-align: center;">
           <thead>
             <tr style="background-color: black; color: white;">
               <th scope="col">No</th>
@@ -156,9 +122,6 @@
               <th scope="col">Tanggal</th>
               <th scope="col">Layanan</th>
               <th scope="col">Berat (kg)</th>
-              <th scope="col">Harga (Rp.)</th>
-              <th scope="col">Diskon (%)</th>
-              <th scope="col">Total</th>
               <th scope="col">Modify</th>
             </tr>
           </thead>
@@ -200,32 +163,12 @@
                 <input type="number" class="form-control" id="berat" placeholder="Masukkan Berat" style="width: 350px;">
               </div>
             </div>
-          <form name="hitung diskon" method="POST">
-            <div class="form-group row ">
-              <label for="hargaa" class="col-sm-2 col-form-label">Harga (Rp.)</label>
-              <div class="col-sm-4">
-                <input type="number" class="form-control" id="harga" name="harga" placeholder="Masukkan Harga" style="width: 350px;">
-              </div>
-            </div>
-            <div class="form-group row ">
-              <label for="diskonn" class="col-sm-2 col-form-label">Diskon (%)</label>
-              <div class="col-sm-4">
-                <input type="number" class="form-control" id="diskon" name="diskon" placeholder="Masukkan Diskon" style="width: 350px;">
-              </div>
-            </div>
-          
-            <div class="form-group row mt-3">
-              <label for="totall" class="col-sm-2 col-form-label">Total</label>
-              <div class="col-sm-4">
-                <input type="number" class="form-control" id="total" name="total" placeholder="Total" style="width: 350px;">
-              </div>
-            </div>
-          </form>
           <button type="button" class="btn text-white" style="margin-left: 355px; margin-top: 20px; background-color: black;" onclick="add()">Tambahkan</button>
           </div>
         </div>
 
         <!--Tabel Pembayaran-->
+        <h3 style="font-family: fantasy; text-align: center; margin-top: 30px;">Tabel Detail Pembayaran</h3>
         <table class="table table-sm rounded shadow rounded" style="width: 1540px; text-align: center; margin-left: 30px;">
           <thead>
             <tr style="background-color: black; color: white;">
@@ -242,12 +185,12 @@
               <th scope="col">Modify</th>
             </tr>
           </thead>
-          <tbody id="tampildata">
+          <tbody id="tampildata2">
           
           </tbody>
         </table>
 
-        <!--Untuk saat edit-->
+        <!--Form Edit-->
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -287,30 +230,93 @@
                       <input type="number" class="form-control" id="mberat" placeholder="Masukkan Berat" style="width: 350px;">
                     </div>
                   </div>
-                <form name="hitung diskon" method="POST">
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-light shadow-sm" data-dismiss="modal">Kembali</button>
+                  <button type="button" class="btn btn-light shadow-sm" onclick="saveData()" data-dismiss="modal">Ubah</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!--Form Pembayaran-->
+        <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header text-white" style="background-color: black;">
+                <h4 class="modal-title" id="exampleModalLabel">Form Pembayaran</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body rounded">
                   <div class="form-group row ">
-                    <label for="mhargaa" class="col-sm-2 col-form-label">Harga (Rp.)</label>
+                    <label for="mpembelii2" class="col-sm-2 col-form-label">Pembeli</label>
                     <div class="col-sm-4">
-                      <input type="number" class="form-control" id="mharga" name="mharga" placeholder="Masukkan Harga" style="width: 350px;">
+                      <input type="text" class="form-control" id="mpembeli2" placeholder="Masukkan Nama" style="width: 350px;">
                     </div>
                   </div>
                   <div class="form-group row ">
-                    <label for="mdiskonn" class="col-sm-2 col-form-label">Diskon (%)</label>
+                    <label for="mtanggall2" class="col-sm-2 col-form-label">Tanggal</label>
                     <div class="col-sm-4">
-                      <input type="number" class="form-control" id="mdiskon" name="mdiskon" placeholder="Masukkan Diskon" style="width: 350px;">
+                      <input type="date" class="form-control" id="mtanggal2" style="width: 350px;">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                  <label for="mlayanann2" class="col-sm-2 col-form-label">Layanan</label>
+                  <div class="col-sm-4">
+                  <select class="form-control" id="mlayanan2" name="mlayanan2" style="width: 350px;">
+                    <option selected>Pilih Layanan</option>
+                    <option value="Pakaian">Pakaian</option>
+                    <option value="Selimut">Selimut</option>
+                    <option value="Bed Cover">Bed Cover</option>
+                  </select>
+                  </div>
+                  </div>
+                  <div class="form-group row ">
+                    <label for="mberatt2" class="col-sm-2 col-form-label">Berat (kg)</label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="mberat2" placeholder="Masukkan Berat" style="width: 350px;">
+                    </div>
+                  </div>
+                <form name="hitung diskon" method="POST">
+                  <div class="form-group row ">
+                    <label for="mhargaa2" class="col-sm-2 col-form-label">Harga (Rp.)</label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="mharga2" name="mharga2" placeholder="Masukkan Harga" style="width: 350px;">
+                    </div>
+                  </div>
+                  <div class="form-group row ">
+                    <label for="mdiskonn2" class="col-sm-2 col-form-label">Diskon (%)</label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="mdiskon2" name="mdiskon2" placeholder="Masukkan Diskon" style="width: 350px;">
                     </div>
                   </div>
                 
                   <div class="form-group row mt-3">
-                    <label for="mtotall" class="col-sm-2 col-form-label">Total</label>
+                    <label for="mtotall2" class="col-sm-2 col-form-label">Total</label>
                     <div class="col-sm-4">
-                      <input type="number" class="form-control" id="mtotal" name="mtotal" placeholder="Total" style="width: 350px;">
+                      <input type="number" class="form-control" id="mtotal2" name="mtotal2" placeholder="Total" style="width: 350px;">
+                    </div>
+                  </div>
+                  <div class="form-group row mt-3">
+                    <label for="mdibayarr2" class="col-sm-2 col-form-label">Dibayar</label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="mdibayar2" name="mdibayar2" placeholder="Masukkan Jumlah Uang" style="width: 350px;">
+                    </div>
+                  </div>
+                  <div class="form-group row mt-3">
+                    <label for="mkembaliann2" class="col-sm-2 col-form-label">Kembalian</label>
+                    <div class="col-sm-4">
+                      <input type="number" class="form-control" id="mkembalian2" name="mkembalian2" placeholder="Total Kembalian" style="width: 350px;">
                     </div>
                   </div>
                 </form>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-light shadow-sm" data-dismiss="modal">Kembali</button>
-                  <button type="button" class="btn btn-light shadow-sm" onclick="saveData()" data-dismiss="modal">Ubah</button>
+                  <button type="button" class="btn btn-light shadow-sm" data-dismiss="modal2">Kembali</button>
+                  <button type="button" class="btn btn-light shadow-sm" onclick="add2()" data-dismiss="modal2">Bayar</button>
                 </div>
               </div>
             </div>
@@ -325,9 +331,7 @@
        var tanggal = []
        var layanan = []
        var berat = []
-       var harga = []
-       var diskon = []
-       var total = []
+       
 
        var tampil = document.getElementById('tampildata')
 
@@ -344,13 +348,11 @@
                 "<td>"+tanggal[i]+"</td>"+
                 "<td>"+layanan[i]+"</td>"+
                 "<td>"+berat[i]+"</td>"+
-                "<td>"+harga[i]+"</td>"+
-                "<td>"+diskon[i]+"</td>"+
-                "<td>"+total[i]+"</td>"+
+               
                 "<td>"+
                   "<button class='btn btn-transparent shadow-sm' href='#' onclick='hapus("+i+")' type='button'>Delete</button>"+
                   "<button class='btn btn-tranparent shadow-sm' data-toggle='modal' data-target='#modal' onclick='update("+i+")' type='button'>Update</button>"+
-                  "<button class='btn btn-tranparent shadow-sm' data-toggle='modal' data-target='#modal' onclick='' type='button'>Bayar</button>"+
+                  "<button class='btn btn-tranparent shadow-sm' data-toggle='modal' data-target='#modal2' type='button'>Bayar</button>"+
                 "</td>"+
               "</tr>"
             }
@@ -363,17 +365,12 @@
               var tanggalbaru = document.getElementById('tanggal').value
               var layananbaru = document.getElementById('layanan').value
               var beratbaru = document.getElementById('berat').value
-              var hargabaru = document.getElementById('harga').value
-              var diskonbaru = document.getElementById('diskon').value
-              var totalbaru = document.getElementById('total').value
-
+              
               pembeli.push(pembelibaru)
               tanggal.push(tanggalbaru)
               layanan.push(layananbaru)
               berat.push(beratbaru)
-              harga.push(hargabaru)
-              diskon.push(diskonbaru)
-              total.push(totalbaru)
+              
 
               showData()
 
@@ -385,9 +382,7 @@
               var tanggalhapus = tanggal.splice(drop,1);
               var layananhapus = layanan.splice(drop,1);
               var berathapus = berat.splice(drop,1);
-              var hargahapus = harga.splice(drop,1);
-              var diskonhapus = diskon.splice(drop,1);
-              var totalhapus = total.splice(drop,1);
+              
 
               showData()
 
@@ -399,9 +394,7 @@
             document.getElementById('mtanggal').value = tanggal[i]
             document.getElementById('mlayanan').value = layanan[i]
             document.getElementById('mberat').value = berat[i]
-            document.getElementById('mharga').value = harga[i]
-            document.getElementById('mdiskon').value = diskon[i]
-            document.getElementById('mtotal').value = total[i]
+            
 
 
             index.push(i)
@@ -412,23 +405,104 @@
             var simpantanggal = document.getElementById('mtanggal').value
             var simpanlayanan = document.getElementById('mlayanan').value
             var simpanberat = document.getElementById('mberat').value
-            var simpanharga = document.getElementById('mharga').value
-            var simpandiskon = document.getElementById('mdiskon').value
-            var simpantotal = document.getElementById('mtotal').value
-
+            
 
             pembeli[index] = simpanpembeli
             tanggal[index] = simpantanggal
             layanan[index] = simpanlayanan
             berat[index] = simpanberat
-            harga[index] = simpanharga
-            diskon[index] = simpandiskon
-            total[index] = simpantotal
+            
             
             
             showData()
             index.pop()
           }
+
+
+
+
+          //Kedalam tabel Detail Pembelian
+          //Data didalam tabel
+       var pembeli2 = []
+       var tanggal2 = []
+       var layanan2 = []
+       var berat2 = []
+       var harga2 = []
+       var diskon2 = []
+       var total2 = []
+       var dibayar2 = []
+       var kembalian2 = []
+
+       var tampil2 = document.getElementById('tampildata2')
+
+          //Menampilkan data
+          function showData2() {
+            tampil2.innerHTML = ""
+
+            for(i = 0;i<pembeli2.length;i++){
+              var nodata2 = i+1
+
+              tampil2.innerHTML += "<tr>"+
+                "<th>"+nodata2+"</th>"+
+                "<td>"+pembeli2[i]+"</td>"+
+                "<td>"+tanggal2[i]+"</td>"+
+                "<td>"+layanan2[i]+"</td>"+
+                "<td>"+berat2[i]+"</td>"+
+                "<td>"+harga2[i]+"</td>"+
+                "<td>"+diskon2[i]+"</td>"+
+                "<td>"+total2[i]+"</td>"+
+                "<td>"+dibayar2[i]+"</td>"+
+                "<td>"+kembalian2[i]+"</td>"+
+                "<td>"+
+                  "<button class='btn btn-transparent shadow-sm' href='#' onclick='hapus2("+i+")' type='button'>Delete</button>"+
+                "</td>"+
+              "</tr>"
+            }
+          }
+          showData2()
+
+          //Menambahkan data baru
+          function add2() {
+              var pembelibaru2 = document.getElementById('mpembeli2').value
+              var tanggalbaru2 = document.getElementById('mtanggal2').value
+              var layananbaru2 = document.getElementById('mlayanan2').value
+              var beratbaru2 = document.getElementById('mberat2').value
+              var hargabaru2 = document.getElementById('mharga2').value
+              var diskonbaru2 = document.getElementById('mdiskon2').value
+              var totalbaru2 = document.getElementById('mtotal2').value
+              var dibayarbaru2 = document.getElementById('mdibayar2').value
+              var kembalianbaru2 = document.getElementById('mkembalian2').value
+
+              pembeli2.push(pembelibaru2)
+              tanggal2.push(tanggalbaru2)
+              layanan2.push(layananbaru2)
+              berat2.push(beratbaru2)
+              harga2.push(hargabaru2)
+              diskon2.push(diskonbaru2)
+              total2.push(totalbaru2)
+              dibayar2.push(dibayarbaru2)
+              kembalian2.push(kembalianbaru2)
+
+              showData2()
+
+          }
+
+          //Menghapus data 
+          function hapus2(drop) {
+              var pembelihapus2 = pembeli2.splice(drop,1);
+              var tanggalhapus2 = tanggal2.splice(drop,1);
+              var layananhapus2 = layanan2.splice(drop,1);
+              var berathapus2 = berat2.splice(drop,1);
+              var hargahapus2 = harga2.splice(drop,1);
+              var diskonhapus2 = diskon2.splice(drop,1);
+              var totalhapus2 = total2.splice(drop,1);
+              var dibayarhapus2 = dibayar2.splice(drop,1);
+              var kembalianhapus2 = kembalian2.splice(drop,1);
+
+              showData2()
+
+          }
+          
 
 
 
