@@ -225,6 +225,28 @@
           </div>
         </div>
 
+        <!--Tabel Pembayaran-->
+        <table class="table table-sm rounded shadow rounded" style="width: 1540px; text-align: center; margin-left: 30px;">
+          <thead>
+            <tr style="background-color: black; color: white;">
+              <th scope="col">No</th>
+              <th scope="col">Pembeli</th>
+              <th scope="col">Tanggal</th>
+              <th scope="col">Layanan</th>
+              <th scope="col">Berat (kg)</th>
+              <th scope="col">Harga (Rp.)</th>
+              <th scope="col">Diskon (%)</th>
+              <th scope="col">Total</th>
+              <th scope="col">Dibayar</th>
+              <th scope="col">Kembalian</th>
+              <th scope="col">Modify</th>
+            </tr>
+          </thead>
+          <tbody id="tampildata">
+          
+          </tbody>
+        </table>
+
         <!--Untuk saat edit-->
         <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -328,7 +350,7 @@
                 "<td>"+
                   "<button class='btn btn-transparent shadow-sm' href='#' onclick='hapus("+i+")' type='button'>Delete</button>"+
                   "<button class='btn btn-tranparent shadow-sm' data-toggle='modal' data-target='#modal' onclick='update("+i+")' type='button'>Update</button>"+
-                  "<button class='btn btn-tranparent shadow-sm' data-toggle='modal' data-target='#modal' onclick='' type='button'>Detail</button>"+
+                  "<button class='btn btn-tranparent shadow-sm' data-toggle='modal' data-target='#modal' onclick='' type='button'>Bayar</button>"+
                 "</td>"+
               "</tr>"
             }
