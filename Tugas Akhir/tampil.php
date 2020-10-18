@@ -1,3 +1,7 @@
+<?php
+include 'koneksi.php';
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -58,7 +62,7 @@
                       </tbody>
                   </table>
 
-                  <button type="button" class="btn btn-primary mt-3 btn-block" name="=simpan" onclick="addtable()">Bayar</button>
+                  <button type="button" class="btn btn-primary mt-3 btn-block">Bayar</button>
 
             </div>
 
@@ -69,7 +73,7 @@
         </div>
     </div>
     <table class="container table table-sm mt-3 text-center">
-      <thead action="simpan.php" method="POST">
+      <thead>
         <tr style="background-color: #34495e; color: white;">
           <th scope="col">Nama Barang</th>
           <th scope="col">Harga</th>
@@ -77,20 +81,29 @@
           <th scope="col">Pajak</th>
           <th scope="col">Total Bayar</th>
         </tr>
-        <tr>
-          <td scope="col"></td>
-          <td scope="col"></td>
-          <td scope="col"></td>
-          <td scope="col"></td>
-          <td scope="col"></td>
-        </tr>
-        
+
+        <?php
+
+        $sql = "SELECT * FROM detail_beli";
+        $query = mysqli_query($connect,$sql);
+
+        while($detail_beli = mysqli_fetch_array($query)){
+            echo "<tr>";
+
+            echo "<td>".$detail_beli['namabarang']."</td>";
+            echo "<td>".$detail_beli['harga']."</td>";
+            echo "<td>".$detail_beli['diskon']."</td>";
+            echo "<td>".$detail_beli['pajak']."</td>";
+            echo "<td>".$detail_beli['totalbayar']."</td>";
+
+            echo "</tr>";
+        }
+        ?>
       </thead>
       <tbody id="tampildata">
         
       </tbody>
     </table>
-    
 
 
     <script>
@@ -107,7 +120,6 @@
 
       var listproduk = document.getElementById('listproduk')
 
-      var listtable = document.getElementById('tampildata')
       var listkeranjang = document.getElementById('listkeranjang')
       var tampilandiscount = document.getElementById('discount')
       var tampilanpajak = document.getElementById('pajak')
@@ -184,54 +196,6 @@
 
         showlistkeranjang()
       }
-
-      function addtable() {
-        namabarang_table.push(namabarang_keranjang)
-        hargabarang_table.push(hargabarang_keranjang)
-        discount_table.push(discount)
-        pajak_table.push(pajak)
-        totalbelanja_table.push(totalbelanja)
-         
-        showlisttable()
-      }
-
-      function showlisttable() {
-        listtable.innerHTML = ''
-
-        var namabarang_table = []
-        var hargabarang_table = []
-        var discount_table = 0
-        var pajak_table = 0
-        var totalbelanja_table = 0
-
-        for (let i = 0; i < namabarang_table.length; i++) {
-            listtable.innerHTML +='<table class="container table table-sm mt-3 text-center">'+
-      '<thead action="simpan.php" method="POST">'+
-        '<tr style="background-color: #34495e; color: white;">'+
-          '<th scope="col">Nama Barang</th>'+
-          '<th scope="col">Harga</th>'+
-          '<th scope="col">Dikson</th>'+
-          '<th scope="col">Pajak</th>'+
-          '<th scope="col">Total Bayar</th>'+
-        '</tr>'+
-        '<tr>'+
-          '<td scope="col">'+namabarang_table[i]+'</td>'+
-          '<td scope="col">'+hargabarang_table[i]+'</td>'+
-          '<td scope="col">'+discount_table[i]+'</td>'+
-          '<td scope="col">'+pajak_table[i]+'</td>'+
-          '<td scope="col">'+totalbelanja_table[i]+'</td>'+
-        '</tr>'+
-        
-      '</thead>'+
-      '<tbody id="tampildata">'+
-        
-      '</tbody>'+
-    '</table>'
-
-
-        }
-      }
-      showlistkeranjang()
 
 
 
