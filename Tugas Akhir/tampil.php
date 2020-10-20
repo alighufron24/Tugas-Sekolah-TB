@@ -62,7 +62,7 @@ include 'koneksi.php';
                       </tbody>
                   </table>
 
-                  <button type="button" class="btn btn-primary mt-3 btn-block">Bayar</button>
+                  <button type="button" class="btn btn-primary mt-3 btn-block" name="=simpan" onclick="add()">Bayar</button>
 
             </div>
 
@@ -72,12 +72,12 @@ include 'koneksi.php';
             </div>
         </div>
     </div>
-    <table class="container table table-sm mt-3 text-center">
+    <table class="container table table-sm mt-3 text-center"  action="simpan.php" method="POST">
       <thead>
         <tr style="background-color: #34495e; color: white;">
+          <th scope="col">No</th>
           <th scope="col">Nama Barang</th>
-          <th scope="col">Harga</th>
-          <th scope="col">Dikson</th>
+          <th scope="col">Diskon</th>
           <th scope="col">Pajak</th>
           <th scope="col">Total Bayar</th>
         </tr>
@@ -91,7 +91,6 @@ include 'koneksi.php';
             echo "<tr>";
 
             echo "<td>".$detail_beli['namabarang']."</td>";
-            echo "<td>".$detail_beli['harga']."</td>";
             echo "<td>".$detail_beli['diskon']."</td>";
             echo "<td>".$detail_beli['pajak']."</td>";
             echo "<td>".$detail_beli['totalbayar']."</td>";
@@ -100,10 +99,11 @@ include 'koneksi.php';
         }
         ?>
       </thead>
-      <tbody id="tampildata">
+      <tbody action="simpan.php" method="POST" id="tampildata">
         
       </tbody>
     </table>
+    
 
 
     <script>
@@ -152,13 +152,19 @@ include 'koneksi.php';
 
       }
 
+
+      var discount = 0
+      var pajak = 0
+      var totalbayar = 0
+      var totalbelanja = 0
+
+
       function showlistkeranjang() {
         listkeranjang.innerHTML = ''
 
-        var discount = 0
-        var pajak = 0
         var hargatotal = 0
-        var totalbayar = 0
+
+        
         for (let i = 0; i < namabarang_keranjang.length; i++) {
             listkeranjang.innerHTML +='<div class="card mt-3 mb-3" style="width: 22rem;">'+
                     '<div class="card-body">'+
@@ -168,6 +174,7 @@ include 'koneksi.php';
                       '<a href="#" class="btn btn-danger float-right" onclick="deleteitem('+i+')">Hapus</a>'+
                     '</div>'+
                   '</div>'
+                  
 
                   hargatotal = hargabarang_keranjang[i]+hargatotal
 
@@ -180,14 +187,13 @@ include 'koneksi.php';
                   totalbayar = hargatotal-discount
 
                   pajak = totalbayar*0.1
-                  var totalbelanja = totalbayar-pajak
+                  totalbelanja = totalbayar-pajak
                   
                   tampilanpajak.innerHTML = pajak
                   tampilandiscount.innerHTML = discount
                   tampilantotalbayar.innerHTML = totalbelanja
-          }
+        }
       }
-
       showlistproduk()
 
       function deleteitem(id) {
@@ -195,6 +201,43 @@ include 'koneksi.php';
         hargabarang_keranjang.splice(id,1)
 
         showlistkeranjang()
+      }
+
+      var namabarang_table = []
+      var discount_table = []
+      var pajak_table = []
+      var totalbelanja_table = []
+
+        var tampil = document.getElementById('tampildata')
+
+
+        function showlisttable() {
+          tampil.innerHTML = ''
+
+        for (l = 0; l < namabarang_table.length; l++) {
+          var nodata = l+1
+
+            tampil.innerHTML +='<tr>'+
+              '<td scope="col">'+nodata+'</td>'+
+              '<td scope="col">'+namabarang_table[l]+'</td>'+
+              '<td scope="col">'+discount_table[l]+'</td>'+
+              '<td scope="col">'+pajak_table[l]+'</td>'+
+              '<td scope="col">'+totalbelanja_table[l]+'</td>'+
+            '</tr>'
+
+        }
+      }
+
+      showlistkeranjang()
+
+
+      function add() {
+        namabarang_table.push(namabarang_keranjang)
+        discount_table.push(discount)
+        pajak_table.push(pajak)
+        totalbelanja_table.push(totalbelanja)
+         
+        showlisttable()
       }
 
 

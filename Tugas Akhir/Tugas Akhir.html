@@ -58,7 +58,7 @@
                       </tbody>
                   </table>
 
-                  <button type="button" class="btn btn-primary mt-3 btn-block" name="=simpan" onclick="addtable()">Bayar</button>
+                  <button type="button" class="btn btn-primary mt-3 btn-block" name="=simpan" onclick="add()">Bayar</button>
 
             </div>
 
@@ -71,20 +71,12 @@
     <table class="container table table-sm mt-3 text-center">
       <thead action="simpan.php" method="POST">
         <tr style="background-color: #34495e; color: white;">
+          <th scope="col">No</th>
           <th scope="col">Nama Barang</th>
-          <th scope="col">Harga</th>
-          <th scope="col">Dikson</th>
+          <th scope="col">Diskon</th>
           <th scope="col">Pajak</th>
           <th scope="col">Total Bayar</th>
         </tr>
-        <tr>
-          <td scope="col"></td>
-          <td scope="col"></td>
-          <td scope="col"></td>
-          <td scope="col"></td>
-          <td scope="col"></td>
-        </tr>
-        
       </thead>
       <tbody id="tampildata">
         
@@ -107,7 +99,6 @@
 
       var listproduk = document.getElementById('listproduk')
 
-      var listtable = document.getElementById('tampildata')
       var listkeranjang = document.getElementById('listkeranjang')
       var tampilandiscount = document.getElementById('discount')
       var tampilanpajak = document.getElementById('pajak')
@@ -140,13 +131,19 @@
 
       }
 
+
+      var discount = 0
+      var pajak = 0
+      var totalbayar = 0
+      var totalbelanja = 0
+
+
       function showlistkeranjang() {
         listkeranjang.innerHTML = ''
 
-        var discount = 0
-        var pajak = 0
         var hargatotal = 0
-        var totalbayar = 0
+
+        
         for (let i = 0; i < namabarang_keranjang.length; i++) {
             listkeranjang.innerHTML +='<div class="card mt-3 mb-3" style="width: 22rem;">'+
                     '<div class="card-body">'+
@@ -156,6 +153,7 @@
                       '<a href="#" class="btn btn-danger float-right" onclick="deleteitem('+i+')">Hapus</a>'+
                     '</div>'+
                   '</div>'
+                  
 
                   hargatotal = hargabarang_keranjang[i]+hargatotal
 
@@ -168,14 +166,13 @@
                   totalbayar = hargatotal-discount
 
                   pajak = totalbayar*0.1
-                  var totalbelanja = totalbayar-pajak
+                  totalbelanja = totalbayar-pajak
                   
                   tampilanpajak.innerHTML = pajak
                   tampilandiscount.innerHTML = discount
                   tampilantotalbayar.innerHTML = totalbelanja
-          }
+        }
       }
-
       showlistproduk()
 
       function deleteitem(id) {
@@ -185,53 +182,44 @@
         showlistkeranjang()
       }
 
-      function addtable() {
+      var namabarang_table = []
+      var discount_table = []
+      var pajak_table = []
+      var totalbelanja_table = []
+
+        var tampil = document.getElementById('tampildata')
+
+
+        function showlisttable() {
+          tampil.innerHTML = ''
+
+        for (l = 0; l < namabarang_table.length; l++) {
+          var nodata = l+1
+
+            tampil.innerHTML +='<tr>'+
+              '<td scope="col">'+nodata+'</td>'+
+              '<td scope="col">'+namabarang_table[l]+'</td>'+
+              '<td scope="col">'+discount_table[l]+'</td>'+
+              '<td scope="col">'+pajak_table[l]+'</td>'+
+              '<td scope="col">'+totalbelanja_table[l]+'</td>'+
+            '</tr>'
+
+        }
+      }
+
+      showlistkeranjang()
+
+
+      function add() {
+
+
         namabarang_table.push(namabarang_keranjang)
-        hargabarang_table.push(hargabarang_keranjang)
         discount_table.push(discount)
         pajak_table.push(pajak)
         totalbelanja_table.push(totalbelanja)
          
         showlisttable()
       }
-
-      function showlisttable() {
-        listtable.innerHTML = ''
-
-        var namabarang_table = []
-        var hargabarang_table = []
-        var discount_table = 0
-        var pajak_table = 0
-        var totalbelanja_table = 0
-
-        for (let i = 0; i < namabarang_table.length; i++) {
-            listtable.innerHTML +='<table class="container table table-sm mt-3 text-center">'+
-      '<thead action="simpan.php" method="POST">'+
-        '<tr style="background-color: #34495e; color: white;">'+
-          '<th scope="col">Nama Barang</th>'+
-          '<th scope="col">Harga</th>'+
-          '<th scope="col">Dikson</th>'+
-          '<th scope="col">Pajak</th>'+
-          '<th scope="col">Total Bayar</th>'+
-        '</tr>'+
-        '<tr>'+
-          '<td scope="col">'+namabarang_table[i]+'</td>'+
-          '<td scope="col">'+hargabarang_table[i]+'</td>'+
-          '<td scope="col">'+discount_table[i]+'</td>'+
-          '<td scope="col">'+pajak_table[i]+'</td>'+
-          '<td scope="col">'+totalbelanja_table[i]+'</td>'+
-        '</tr>'+
-        
-      '</thead>'+
-      '<tbody id="tampildata">'+
-        
-      '</tbody>'+
-    '</table>'
-
-
-        }
-      }
-      showlistkeranjang()
 
 
 
