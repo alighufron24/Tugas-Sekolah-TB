@@ -62,7 +62,7 @@ include 'koneksi.php';
                       </tbody>
                   </table>
 
-                  <button type="button" class="btn btn-primary mt-3 btn-block" data-toggle='modal' data-target='#modal' onclick="" name="simpan">Bayar</button>
+                  <button type="button" class="btn btn-primary mt-3 btn-block" data-toggle='modal' data-target='#modal' onclick="add()" name="simpan">Bayar</button>
 
             </div>
 
@@ -130,7 +130,7 @@ include 'koneksi.php';
                 <p><label>Diskon : <input type="number" name="diskon"></label></p>
                 <p><label>Pajak : <input type="number" name="pajak"></label></p>
                 <p><label>Total  : <input type="number" name="totalbayar"></label></p>
-                <input type="submit" name="simpan" value="simpan" onclick="add()">
+                <input type="submit" name="simpan" value="simpan" onclick="">
                 </form>
             </div>
           </div>
