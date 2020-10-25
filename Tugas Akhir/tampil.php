@@ -31,52 +31,11 @@ include 'koneksi.php';
 
   </head>
   <body>
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-      </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <div class="judullist rounded text-center text-white pt-2">List Items</div>
-
-                <div class="listkeranjang" id="listkeranjang">
-                  
-                </div>
-
-                  <table width="100%">
-                      <tbody>
-                          <tr>
-                              <td>Discount (5%)</td>
-                              <td>Rp. <span id="discount"></span></td>
-                          </tr>
-                          <tr>
-                              <td>PPN (10%)</td>
-                              <td>Rp. <span id="pajak"></span></td>
-                          </tr>
-                          <tr class="text-white" style="background-color: #34495e;">
-                              <td>Total Bayar</td>
-                              <td>Rp. <span id="totalbayar"></span></td>
-                          </tr>
-                      </tbody>
-                  </table>
-
-                  <button type="button" class="btn btn-primary mt-3 btn-block" name="=simpan" onclick="add()">Bayar</button>
-
-            </div>
-
-            <div class="col-8" id="listproduk">
-              <!-- List Produk -->
-                
-            </div>
-        </div>
-    </div>
-    <table class="container table table-sm mt-3 text-center"  action="simpan.php" method="POST">
-      <thead>
+    
+    <table class="container table table-sm mt-3 text-center">
         <tr style="background-color: #34495e; color: white;">
-          <th scope="col">No</th>
           <th scope="col">Nama Barang</th>
+          <th scope="col">Harga</th>
           <th scope="col">Diskon</th>
           <th scope="col">Pajak</th>
           <th scope="col">Total Bayar</th>
@@ -91,6 +50,7 @@ include 'koneksi.php';
             echo "<tr>";
 
             echo "<td>".$detail_beli['namabarang']."</td>";
+            echo "<td>".$detail_beli['harga']."</td>";
             echo "<td>".$detail_beli['diskon']."</td>";
             echo "<td>".$detail_beli['pajak']."</td>";
             echo "<td>".$detail_beli['totalbayar']."</td>";
@@ -98,152 +58,11 @@ include 'koneksi.php';
             echo "</tr>";
         }
         ?>
-      </thead>
-      <tbody action="simpan.php" method="POST" id="tampildata">
-        
-      </tbody>
-    </table>
+
     
 
 
-    <script>
-      var namabarang = ['Redmi 8A Pro', 'Redmi Note 7', 'Redmi Note 8', 'Redmi 9A','Redmi Note 5','Redmi Note 9']
-      var hargabarang = [1500000, 3000000, 2000000, 1000000, 2000000, 3000000]
-      var gambarbarang = [
-        "https://d2pa5gi5n2e1an.cloudfront.net/webp/global/images/product/mobilephones/Xiaomi_Redmi_8A_Dual/Xiaomi_Redmi_8A_Dual_L_1.jpg",
-        "https://images-na.ssl-images-amazon.com/images/I/71-pqefjJRL._SL1500_.jpg",
-        "https://lh3.googleusercontent.com/-LWy3oADGLc0/XaHzwCV4SSI/AAAAAAAAAqk/Ht-EqPeJ0z8OTdbaxNZcDs6fHIzm55gHACLcBGAsYHQ/s1600/harga-xiaomi-redmi-note-8-pro.jpg",
-        "https://d2pa5gi5n2e1an.cloudfront.net/webp/global/images/product/mobilephones/Xiaomi_Redmi_9A_th/Xiaomi_Redmi_9A_th_L_4.jpg",
-        "https://d2pa5gi5n2e1an.cloudfront.net/global/images/product/mobilephones/Xiaomi_Redmi_Note_5_Pro/Xiaomi_Redmi_Note_5_Pro_L_1.jpg",
-        "https://d2pa5gi5n2e1an.cloudfront.net/webp/global/images/product/mobilephones/Xiaomi_Note_9_ph/Xiaomi_Note_9_ph_L_1.jpg"
-      ]
-
-      var listproduk = document.getElementById('listproduk')
-
-      var listkeranjang = document.getElementById('listkeranjang')
-      var tampilandiscount = document.getElementById('discount')
-      var tampilanpajak = document.getElementById('pajak')
-      var tampilantotalbayar = document.getElementById('totalbayar')
-
-      var namabarang_keranjang = []
-      var hargabarang_keranjang = []
-
-      function showlistproduk() {
-        listproduk.innerHTML = ''
-          for (let i = 0; i < namabarang.length; i++) {
-            listproduk.innerHTML +='<div class="card float-left mr-3 mb-3" style="width: 12rem;">'+
-                    '<img src="'+gambarbarang[i]+'"class="card-img-top" alt="Gambar" style="height: 150px;">'+
-                    '<div class="card-body">'+
-                      '<h5 class="card-title">'+namabarang[i]+'</h5>'+
-                      '<p class="card-text">Rp. '+hargabarang[i]+'</p>'+
-                      '<a href="#" class="btn btn-primary" onclick="addlistitem('+i+')">Beli</a>'+
-                    '</div>'+
-                  '</div>'
-            
-          }
-      }
-
-      function addlistitem(id) {
-        namabarang_keranjang.push(namabarang[id])
-        hargabarang_keranjang.push(hargabarang[id])
-
-          showlistkeranjang()
-
-
-      }
-
-
-      var discount = 0
-      var pajak = 0
-      var totalbayar = 0
-      var totalbelanja = 0
-
-
-      function showlistkeranjang() {
-        listkeranjang.innerHTML = ''
-
-        var hargatotal = 0
-
-        
-        for (let i = 0; i < namabarang_keranjang.length; i++) {
-            listkeranjang.innerHTML +='<div class="card mt-3 mb-3" style="width: 22rem;">'+
-                    '<div class="card-body">'+
-                      '<h5 class="card-title">'+namabarang_keranjang[i]+'</h5>'+
-                      '<p class="card-text">Rp. '+hargabarang_keranjang[i]+'</p>'+
-                      '<p>Qty : 1</p>'+
-                      '<a href="#" class="btn btn-danger float-right" onclick="deleteitem('+i+')">Hapus</a>'+
-                    '</div>'+
-                  '</div>'
-                  
-
-                  hargatotal = hargabarang_keranjang[i]+hargatotal
-
-
-                  if(totalbayar>5000000){
-                    discount = totalbayar*0.05
-                  }else{
-                    discount = 0
-                  }
-                  totalbayar = hargatotal-discount
-
-                  pajak = totalbayar*0.1
-                  totalbelanja = totalbayar-pajak
-                  
-                  tampilanpajak.innerHTML = pajak
-                  tampilandiscount.innerHTML = discount
-                  tampilantotalbayar.innerHTML = totalbelanja
-        }
-      }
-      showlistproduk()
-
-      function deleteitem(id) {
-        namabarang_keranjang.splice(id,1)
-        hargabarang_keranjang.splice(id,1)
-
-        showlistkeranjang()
-      }
-
-      var namabarang_table = []
-      var discount_table = []
-      var pajak_table = []
-      var totalbelanja_table = []
-
-        var tampil = document.getElementById('tampildata')
-
-
-        function showlisttable() {
-          tampil.innerHTML = ''
-
-        for (l = 0; l < namabarang_table.length; l++) {
-          var nodata = l+1
-
-            tampil.innerHTML +='<tr>'+
-              '<td scope="col">'+nodata+'</td>'+
-              '<td scope="col">'+namabarang_table[l]+'</td>'+
-              '<td scope="col">'+discount_table[l]+'</td>'+
-              '<td scope="col">'+pajak_table[l]+'</td>'+
-              '<td scope="col">'+totalbelanja_table[l]+'</td>'+
-            '</tr>'
-
-        }
-      }
-
-      showlistkeranjang()
-
-
-      function add() {
-        namabarang_table.push(namabarang_keranjang)
-        discount_table.push(discount)
-        pajak_table.push(pajak)
-        totalbelanja_table.push(totalbelanja)
-         
-        showlisttable()
-      }
-
-
-
-
-    </script>
+    
 
 
 
@@ -253,4 +72,3 @@ include 'koneksi.php';
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   </body>
-</html>

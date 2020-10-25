@@ -58,7 +58,7 @@
                       </tbody>
                   </table>
 
-                  <button type="button" class="btn btn-primary mt-3 btn-block" name="=simpan" onclick="add()">Bayar</button>
+                  <button type="button" class="btn btn-primary mt-3 btn-block" data-toggle='modal' data-target='#modal' onclick="add()" name="simpan">Bayar</button>
 
             </div>
 
@@ -69,10 +69,10 @@
         </div>
     </div>
     <table class="container table table-sm mt-3 text-center">
-      <thead action="simpan.php" method="POST">
+      <thead>
         <tr style="background-color: #34495e; color: white;">
-          <th scope="col">No</th>
           <th scope="col">Nama Barang</th>
+          <th scope="col">Harga</th>
           <th scope="col">Diskon</th>
           <th scope="col">Pajak</th>
           <th scope="col">Total Bayar</th>
@@ -82,6 +82,39 @@
         
       </tbody>
     </table>
+
+    <!--Form Input-->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: black;">
+              <h4 class="modal-title" id="exampleModalLabel">Masukkan data</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body rounded">
+              <form action="simpan.php" method="POST">
+
+                <p><label>Nama Barang : <select name="namabarang" id="nama">
+                  <option value="Redmi 8A Pro">Redmi 8A Pro</option>
+                  <option value="Redmi Note 7">Redmi Note 7</option>
+                  <option value="Redmi Note 8">Redmi Note 8</option>
+                  <option value="Redmi 9A">Redmi 9A</option>
+                  <option value="Redmi Note 5">Redmi Note 5</option>
+                  <option value="Redmi Note 9">Redmi Note 9</option>
+                </select></label></p>
+                <p><label>Harga : <input type="number" name="harga"></label></p>
+                <p><label>Diskon : <input type="number" name="diskon"></label></p>
+                <p><label>Pajak : <input type="number" name="pajak"></label></p>
+                <p><label>Total  : <input type="number" name="totalbayar"></label></p>
+                <input type="submit" name="simpan" value="simpan">
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
     
 
 
@@ -104,8 +137,7 @@
       var tampilanpajak = document.getElementById('pajak')
       var tampilantotalbayar = document.getElementById('totalbayar')
 
-      var namabarang_keranjang = []
-      var hargabarang_keranjang = []
+      
 
       function showlistproduk() {
         listproduk.innerHTML = ''
@@ -131,7 +163,9 @@
 
       }
 
-
+      var namabarang_keranjang = []
+      var hargabarang_keranjang = []
+      
       var discount = 0
       var pajak = 0
       var totalbayar = 0
@@ -163,6 +197,7 @@
                   }else{
                     discount = 0
                   }
+                  
                   totalbayar = hargatotal-discount
 
                   pajak = totalbayar*0.1
@@ -183,6 +218,7 @@
       }
 
       var namabarang_table = []
+      var hargabarang_table = []
       var discount_table = []
       var pajak_table = []
       var totalbelanja_table = []
@@ -193,12 +229,11 @@
         function showlisttable() {
           tampil.innerHTML = ''
 
-        for (l = 0; l < namabarang_table.length; l++) {
-          var nodata = l+1
+        for (let l = 0; l < namabarang_table.length; l++) {
 
             tampil.innerHTML +='<tr>'+
-              '<td scope="col">'+nodata+'</td>'+
               '<td scope="col">'+namabarang_table[l]+'</td>'+
+              '<td scope="col">'+hargabarang_table[l]+'</td>'+
               '<td scope="col">'+discount_table[l]+'</td>'+
               '<td scope="col">'+pajak_table[l]+'</td>'+
               '<td scope="col">'+totalbelanja_table[l]+'</td>'+
@@ -214,6 +249,7 @@
 
 
         namabarang_table.push(namabarang_keranjang)
+        hargabarang_table.push(hargabarang_keranjang)
         discount_table.push(discount)
         pajak_table.push(pajak)
         totalbelanja_table.push(totalbelanja)
